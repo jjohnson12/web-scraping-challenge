@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+<head>
+  <meta charset="UTF-8">
+  <title>Mars</title>
+</head>
+
+
+<body>
+   <main>
+    <div class="container-lg">
+      <!-- Just an image -->
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img src="https://solarsystem.nasa.gov/internal_resources/3842" width="30" height="30" alt="">
+        MoonNews!
+      </a>
+    </nav>
+
+
+   
+      <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-4">Check in on Mars!</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Click here for Mars Live Data!</a></p>
+      </div>
+  </div>
+
+
+      <div clas="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Latest Mars News</h1>
+          <h2>{{ mars["Latest Mars News Title"] }}</h2>
+          <p>{{ mars["Latest Mars News"] }}</p>
+          <br>
+        </div>
+        
+        <div class="row">
+          
+          <div class="col-md-8">
+            <h2>Featured Mars Image</h2>
+            <img src="{{ mars['JPL Mars Space Image']}}" alt="Hemisphere" style="width:90%;">
+          </div>
+          
+          <div class="col-md-4">
+            <hr>
+            <h3>Current Weather on Mars</h3>
+            <p>{{ mars["Latest Mars Weather"] }}</p>
+            <hr>
+            <h3>Mars Fun Facts!</h3>
+            <p>{{ mars["Mars Fun Facts"] | safe }}</p>
+
+          </div>
+      </div>
+      <div class="nav justify-content-center">
+        <div class="row">
+                  <hr>
+        <div class="col-md-6">
+          <h3>Hemisphere Pictures:</h3>
+            {% for image in mars["Mars Hemispheres"][0:2] %}
+          <img src="{{ image['image_url']}}" alt="Hemisphere" style="width:50%;">
+          <p> {{ image['title'] }}</p>
+          {% endfor %}
+          </div>
+          <div class="col-md-6">
+          <h3>Hemisphere Pictures:</h3>
+            {% for image in mars["Mars Hemispheres"][2:4] %}
+          <img src="{{ image['image_url']}}" alt="Hemisphere" style="width:50%;">
+          <p> {{ image['title'] }}</p>
+          {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
